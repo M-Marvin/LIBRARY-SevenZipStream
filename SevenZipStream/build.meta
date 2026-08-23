@@ -1,0 +1,37 @@
+import de.m_marvin.metabuild.java.script.JavaBuildScript;
+import de.m_marvin.metabuild.maven.types.Repository;
+import de.m_marvin.metabuild.maven.types.Repository.Credentials;
+
+public class Buildfile extends JavaBuildScript {
+	
+	String version = "1.0";
+	
+	@Override
+	public void init() {
+		
+		projectName = "lzmastream";
+		
+		super.init();
+		
+	}
+	
+	@Override
+	public void publishing() {
+		
+		super.publishing();
+		
+		publishMavenLocal.coordinates("de.m_marvin.sevenzipstream:lzmastream:" + version);
+		
+		publishMaven.coordinates("de.m_marvin.sevenzipstream:lzmastream:" + version);
+		publishMaven.repository(new Repository(
+				"GHP [UnifiedVectors]", 
+				"https://maven.pkg.github.com/m-marvin/library-sevenzipstream",
+				new Credentials(
+						() -> System.getenv("GITHUB_ACTOR"), 
+						() -> System.getenv("GITHUB_TOKEN")
+				)
+		));
+		
+	}
+	
+}
