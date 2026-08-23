@@ -1,3 +1,4 @@
 /.metadata/
 /SevenZipStream/run
 *.log
+/SevenZipStream/build
